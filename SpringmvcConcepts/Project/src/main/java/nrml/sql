@@ -1,0 +1,41 @@
+create table usertable
+		( mailid varchar2(40) pk,
+		  password varchar2(10),
+		  active varchar2(10),
+		  role varchar2(20),
+		  date&time varchar2(25)
+		);
+		
+create table userdetails 
+		(   registornumber varchar2(10) pk, 
+			mailid varchar2(20) referances usertable (mailid),
+			fname varchar2(25),
+			lname varchar2(25),
+			resume blob,
+			date&time varchar2(25)			
+		);
+
+create table interview_management
+		(   id varchar2(10) pk,
+			domain varchar2(20) pk,
+			experience varchar2(25),
+			date&time varchar2(25)			
+		);		
+		
+create table interview_shedule
+		( 
+		  mailid varchar2(20) referances usertable (mailid),
+		  id varchar2(20)     referances interview_management (id),
+		  slottiming varchar2(25) pk,
+		  date&time varchar2(25)	
+		);		
+		
+
+		::placeholder {
+  color: green;
+  text-align:center
+  
+}
+		
+		
+		

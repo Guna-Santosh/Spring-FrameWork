@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+        
+<context:component-scan base-package="springmvc.test"/>
+
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" name="viewresolver">
+	<property name="prefix" value="/WEB-INF/view/"></property>
+	<property name="suffix" value=".jsp"></property>
+
+
+
+</bean>
+
+<!-- 
+
+<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">    
+<property name="driverClassName" value="org.postgresql.Driver"></property>    
+<property name="url" value="jdbc:postgresql://10.11.12.51:5460/training"></property>    
+<property name="username" value="training"></property>    
+<property name="password" value="training"></property>    
+</bean>    
+    
+<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">    
+<property name="dataSource" ref="ds"></property>    
+</bean>    
+    
+<bean id="dao" class="springdao.dao.Empdao">    
+<property name="template" ref="jt"></property>    
+</bean>
+
+ -->
+
+
+
+</beans>

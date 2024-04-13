@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+        
+        <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
+	        <property name="driverClassName" value="org.postgresql.Driver"></property>
+	        <property name="url" value="jdbc:postgresql://10.11.12.51:5460/training"></property>
+	        <property name="username" value="training"></property>
+	        <property name="password" value="training"></property>      
+        </bean>
+        
+       <!-- local session factory bean object -->
+        <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="factory">
+       
+        	<property name="dataSource" ref="ds"></property>
+        	<property name="hibernateProperties">
+        	  <props>
+        		  <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL81Dialect </prop>
+				  <prop key="hibernate.show_postgresql">true</prop>        		
+				  <prop key="hibernate.hbm2ddl.auto">update</prop>        		
+        		</props>
+        	</property>
+       		<property name="annotatedClasses">
+       			<list>
+       				<value>
+       					com.spring.jdbc.Entity.Student
+       				</value>
+       			</list>
+       		</property>
+        	
+        </bean>
+                
+       <!-- HibernateTemplate object -->
+        <bean class="org.springframework.orm.hibernate5.HibernateTemplate" name="hbt">
+        	<property name="sessionFactory" ref="factory"></property>
+        </bean>
+       <!--Dao class object  -->
+        <bean id = "studao" class="com.spring.jdbc.DAO.StudentDAO" name="StudentDAO">
+        	<property name="template" ref="hbt"></property>
+        </bean>
+</beans>
+        
